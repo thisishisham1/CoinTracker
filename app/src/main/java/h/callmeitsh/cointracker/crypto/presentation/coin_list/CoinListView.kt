@@ -1,5 +1,11 @@
 package h.callmeitsh.cointracker.crypto.presentation.coin_list
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.Spring
+import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.spring
+import androidx.compose.animation.core.tween
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -12,12 +18,15 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.graphics.scale
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import h.callmeitsh.cointracker.crypto.presentation.coin_list.components.CoinListItem
 import h.callmeitsh.cointracker.crypto.presentation.coin_list.components.coinPreview
 import h.callmeitsh.cointracker.ui.theme.CoinTrackerTheme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CoinListView(modifier: Modifier = Modifier, state: CoinListState) {
     if (state.isLoading) {
@@ -29,10 +38,31 @@ fun CoinListView(modifier: Modifier = Modifier, state: CoinListState) {
             modifier = modifier.fillMaxSize(),
             verticalArrangement = Arrangement.spacedBy(8.dp),
         ) {
-            items(state.coins) { coinUi ->
+            items(state.coins,
+                key = { it.id }
+            ) { coinUi ->
                 CoinListItem(
                     coinUi = coinUi,
-                    onClick = { /*TODO*/ }, modifier = Modifier.fillMaxWidth()
+                    onClick = { /*TODO*/ },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .animateItemPlacement(
+                            animationSpec = spring(
+                                dampingRatio = Spring.DampingRatioMediumBouncy,
+                                stiffness = Spring.StiffnessMedium
+                            )
+                        )
+                        .scale(
+                            animateFloatAsState(
+                                targetValue = 1f,
+                                animationSpec = tween(
+                                    durationMillis = 300,
+                                    easing = FastOutSlowInEasing
+                                ),
+                                label = "scale"
+                            ).value
+                        )
+
                 )
             }
         }
