@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import h.callmeitsh.cointracker.crypto.domain.Coin
 import h.callmeitsh.cointracker.crypto.presentation.models.CoinUi
 import h.callmeitsh.cointracker.crypto.presentation.models.toCoinUi
-import h.callmeitsh.cointracker.ui.theme.CoinTrackerTheme
+import h.callmeitsh.cointracker.crypto.presentation.theme.CoinTrackerTheme
 
 @Composable
 fun CoinListItem(
@@ -53,7 +53,7 @@ fun CoinListItem(
         label = "alpha"
     )
     val translationX by animateFloatAsState(
-        targetValue = if (isVisible) 0f else -200f,
+        targetValue = if (isVisible) 0f else -100f,
         animationSpec = spring(
             dampingRatio = Spring.DampingRatioMediumBouncy,
             stiffness = Spring.StiffnessLow
@@ -143,7 +143,7 @@ internal val coinPreview = Coin(
     name = "Aergo",
     rank = 1,
     symbol = "AERGO",
-    price = 50000.0,
-    percentChange24h = 0.6,
-    marketCap = 12485965258.75
+    priceUsd = 50000.0,
+    changePercent24Hr = 0.6,
+    marketCapUsd = 12485965258.75
 ).toCoinUi()

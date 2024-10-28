@@ -1,4 +1,4 @@
-package h.callmeitsh.cointracker.ui.theme
+package h.callmeitsh.cointracker.crypto.presentation.theme
 import androidx.compose.ui.graphics.Color
 
 val primaryLight = Color(0xFF495D92)

@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import h.callmeitsh.cointracker.crypto.presentation.models.DisplayableNumber
-import h.callmeitsh.cointracker.ui.theme.CoinTrackerTheme
+import h.callmeitsh.cointracker.crypto.presentation.theme.CoinTrackerTheme
 
 @Composable
 fun PriceChange(

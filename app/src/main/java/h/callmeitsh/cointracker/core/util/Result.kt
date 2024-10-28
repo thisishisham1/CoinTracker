@@ -1,7 +1,6 @@
-package h.callmeitsh.cointracker.util
+package h.callmeitsh.cointracker.core.util
 
 typealias DomainError = Error
-typealias EmptyResult<E> = Result<Unit, E>
 
 sealed interface Result<out D, out E : DomainError> {
     data class Success<out D>(val data: D) : Result<D, Nothing>
@@ -14,11 +13,15 @@ inline fun <T, E : DomainError, R> Result<T, E>.map(map: (T) -> R): Result<R, E>
         is Result.Error -> Result.Error(error)
     }
 }
-fun <T, E: Error> Result<T, E>.asEmptyDataResult(): EmptyResult<E> {
-    return map {  }
+
+typealias EmptyResult<E> = Result<Unit, E>
+
+fun <T, E : Error> Result<T, E>.asEmptyDataResult(): Result<Unit, E> {
+    return map { }
 }
-inline fun <T, E: Error> Result<T, E>.onSuccess(action: (T) -> Unit): Result<T, E> {
-    return when(this) {
+
+inline fun <T, E : Error> Result<T, E>.onSuccess(action: (T) -> Unit): Result<T, E> {
+    return when (this) {
         is Result.Error -> this
         is Result.Success -> {
             action(data)
@@ -26,8 +29,9 @@ inline fun <T, E: Error> Result<T, E>.onSuccess(action: (T) -> Unit): Result<T, 
         }
     }
 }
-inline fun <T, E: Error> Result<T, E>.onError(action: (E) -> Unit): Result<T, E> {
-    return when(this) {
+
+inline fun <T, E : Error> Result<T, E>.onError(action: (E) -> Unit): Result<T, E> {
+    return when (this) {
         is Result.Error -> {
             action(error)
             this

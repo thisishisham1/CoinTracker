@@ -1,4 +1,4 @@
-package h.callmeitsh.cointracker.ui.theme
+package h.callmeitsh.cointracker.crypto.presentation.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.font.FontFamily
