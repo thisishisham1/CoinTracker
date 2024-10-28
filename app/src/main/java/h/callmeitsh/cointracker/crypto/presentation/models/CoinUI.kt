@@ -2,7 +2,7 @@ package h.callmeitsh.cointracker.crypto.presentation.models
 
 import androidx.annotation.DrawableRes
 import h.callmeitsh.cointracker.crypto.domain.Coin
-import h.callmeitsh.cointracker.util.getDrawableIdForCoin
+import h.callmeitsh.cointracker.core.presentation.util.getDrawableIdForCoin
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -27,9 +27,9 @@ fun Coin.toCoinUi() = CoinUi(
     rank = rank,
     name = name,
     symbol = symbol,
-    price = price.toDisplayableNumber(),
-    percentChange24h = percentChange24h.toDisplayableNumber(),
-    marketCap = marketCap.toDisplayableNumber(),
+    price = priceUsd.toDisplayableNumber(),
+    percentChange24h = changePercent24Hr.toDisplayableNumber(),
+    marketCap = marketCapUsd.toDisplayableNumber(),
     iconRes = getDrawableIdForCoin(symbol)
 )
 

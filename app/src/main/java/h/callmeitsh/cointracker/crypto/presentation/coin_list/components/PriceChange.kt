@@ -20,7 +20,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.unit.dp
 import h.callmeitsh.cointracker.crypto.presentation.models.DisplayableNumber
-import h.callmeitsh.cointracker.ui.theme.CoinTrackerTheme
+import h.callmeitsh.cointracker.crypto.presentation.theme.CoinTrackerTheme
 
 @Composable
 fun PriceChange(
@@ -36,7 +36,7 @@ fun PriceChange(
     val containerColor = if (change.value < 0.0) {
         MaterialTheme.colorScheme.error
     } else {
-        Color.Green
+        Color(0xFF00C853)
     }
 
     Row(
@@ -53,12 +53,12 @@ fun PriceChange(
                 Icons.Default.ArrowDropUp
             },
             contentDescription = null,
-            modifier = Modifier.size(16.dp),
+            modifier = Modifier.size(24.dp),
             tint = contentColor
         )
         Text(
             text = "${change.suffix} %",
-            style = MaterialTheme.typography.bodySmall.copy(
+            style = MaterialTheme.typography.titleSmall.copy(
                 fontWeight = FontWeight.Medium
             ),
             color = contentColor

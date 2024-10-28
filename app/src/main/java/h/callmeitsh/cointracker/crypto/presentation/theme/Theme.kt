@@ -1,4 +1,4 @@
-package h.callmeitsh.cointracker.ui.theme
+package h.callmeitsh.cointracker.crypto.presentation.theme
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme

@@ -1,4 +1,4 @@
-package h.callmeitsh.cointracker.util
+package h.callmeitsh.cointracker.core.presentation.util
 
 import h.callmeitsh.coinvault.R
 
