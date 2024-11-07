@@ -36,7 +36,10 @@ import h.callmeitsh.coinvault.R
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun CoinDetailsView(modifier: Modifier = Modifier, state: CoinListState) {
+fun CoinDetailsView(
+    modifier: Modifier = Modifier,
+    state: CoinListState
+) {
     if (state.isLoading) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()

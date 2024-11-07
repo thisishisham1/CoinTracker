@@ -25,7 +25,11 @@ import h.callmeitsh.cointracker.crypto.presentation.coin_list.components.coinPre
 import h.callmeitsh.cointracker.crypto.presentation.theme.CoinTrackerTheme
 
 @Composable
-fun CoinListView(modifier: Modifier = Modifier, state: CoinListState) {
+fun CoinListView(
+    modifier: Modifier = Modifier,
+    state: CoinListState,
+    onAction: (CoinListAction) -> Unit,
+) {
     if (state.isLoading) {
         Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             CircularProgressIndicator()
@@ -42,7 +46,9 @@ fun CoinListView(modifier: Modifier = Modifier, state: CoinListState) {
                     .fillMaxWidth()
                 CoinListItem(
                     coinUi = coinUi,
-                    onClick = { /*TODO*/ },
+                    onClick = {
+                        onAction(CoinListAction.onCoinClicked(coinUi))
+                    },
                     modifier = Modifier
                         .animateItem(
                             fadeInSpec = null, fadeOutSpec = null, placementSpec = spring(
@@ -60,7 +66,6 @@ fun CoinListView(modifier: Modifier = Modifier, state: CoinListState) {
                                 label = "scale"
                             ).value
                         )
-
                 )
             }
         }
@@ -76,7 +81,8 @@ private fun CoinListViewPreview() {
                 coinPreview.copy(id = it.toString())
             }
         ),
-            modifier = Modifier.background(MaterialTheme.colorScheme.background)
+            modifier = Modifier.background(MaterialTheme.colorScheme.background),
+            onAction = { TODO() }
         )
     }
 }
