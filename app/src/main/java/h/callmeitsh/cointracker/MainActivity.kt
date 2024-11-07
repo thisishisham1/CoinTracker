@@ -17,7 +17,7 @@ import h.callmeitsh.cointracker.core.presentation.util.ObserveAsEvents
 import h.callmeitsh.cointracker.core.presentation.util.toString
 import h.callmeitsh.cointracker.crypto.presentation.coin_list.CoinListEvent
 import h.callmeitsh.cointracker.crypto.presentation.coin_list.CoinListView
-import h.callmeitsh.cointracker.crypto.presentation.viewModel.CoinListViewModel
+import h.callmeitsh.cointracker.crypto.presentation.coin_list.CoinListViewModel
 import h.callmeitsh.cointracker.crypto.presentation.theme.CoinTrackerTheme
 import org.koin.androidx.compose.koinViewModel
 

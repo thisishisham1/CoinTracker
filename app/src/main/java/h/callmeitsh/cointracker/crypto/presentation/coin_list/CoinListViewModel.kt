@@ -1,13 +1,10 @@
-package h.callmeitsh.cointracker.crypto.presentation.viewModel
+package h.callmeitsh.cointracker.crypto.presentation.coin_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import h.callmeitsh.cointracker.core.util.onError
 import h.callmeitsh.cointracker.core.util.onSuccess
 import h.callmeitsh.cointracker.crypto.domain.CoinDataSource
-import h.callmeitsh.cointracker.crypto.presentation.coin_list.CoinListAction
-import h.callmeitsh.cointracker.crypto.presentation.coin_list.CoinListEvent
-import h.callmeitsh.cointracker.crypto.presentation.coin_list.CoinListState
 import h.callmeitsh.cointracker.crypto.presentation.models.toCoinUi
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -33,7 +30,7 @@ class CoinListViewModel(
     private val _event = Channel<CoinListEvent>()
     val event = _event.receiveAsFlow()
 
-    fun onAction(action: CoinListAction) {
+    private fun onAction(action: CoinListAction) {
         when (action) {
             is CoinListAction.onCoinClicked -> {
                 // TODO: Handle coin click
