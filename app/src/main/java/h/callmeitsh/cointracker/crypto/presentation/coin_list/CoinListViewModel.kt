@@ -7,6 +7,7 @@ import androidx.navigation.NavController
 import h.callmeitsh.cointracker.core.util.onError
 import h.callmeitsh.cointracker.core.util.onSuccess
 import h.callmeitsh.cointracker.crypto.domain.CoinDataSource
+import h.callmeitsh.cointracker.crypto.presentation.coin_details.DataPoint
 import h.callmeitsh.cointracker.crypto.presentation.models.CoinUi
 import h.callmeitsh.cointracker.crypto.presentation.models.toCoinUi
 import kotlinx.coroutines.channels.Channel
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
 
 class CoinListViewModel(
     private val coinDataSource: CoinDataSource,
@@ -51,7 +53,20 @@ class CoinListViewModel(
                 start = ZonedDateTime.now().minusDays(5),
                 end = ZonedDateTime.now()
             ).onSuccess { history ->
-                Log.d("CoinListViewModel", "selectCoin: $history coin id: ${coinUi.id}")
+                val dataPoints = history.sortedBy {
+                    it.dateTime
+                }.map {
+                    DataPoint(
+                        x = it.dateTime.hour.toFloat(),
+                        y = it.priceUsd.toFloat(),
+                        xLabel = DateTimeFormatter.ofPattern("ha\nM/d").format(it.dateTime),
+                    )
+                }
+                _state.update {
+                    it.copy(
+                        selectedCoin = it.selectedCoin?.copy(coinPricesHistory = dataPoints)
+                    )
+                }
             }.onError { error ->
                 _event.send(CoinListEvent.Error(error))
             }
