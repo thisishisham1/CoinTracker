@@ -3,6 +3,7 @@ package h.callmeitsh.cointracker.crypto.presentation.models
 import androidx.annotation.DrawableRes
 import h.callmeitsh.cointracker.crypto.domain.Coin
 import h.callmeitsh.cointracker.core.presentation.util.getDrawableIdForCoin
+import h.callmeitsh.cointracker.crypto.presentation.coin_details.DataPoint
 import java.text.NumberFormat
 import java.util.Locale
 
@@ -14,7 +15,8 @@ data class CoinUi(
     val price: DisplayableNumber,
     val percentChange24h: DisplayableNumber,
     val marketCap: DisplayableNumber,
-    @DrawableRes val iconRes: Int
+    @DrawableRes val iconRes: Int,
+    val coinPricesHistory : List<DataPoint> = emptyList()
 )
 
 data class DisplayableNumber(

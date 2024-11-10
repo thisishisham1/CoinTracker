@@ -7,4 +7,7 @@
     <string name="error_serialization">Couldn\'t serialize or deserialize data.</string>
     <string name="error_not_found">ops ,not founded error</string>
     <string name="error_server_error">sry this error for our server</string>
+    <string name="coin_details_market_cap">Market cap</string>
+    <string name="coin_details_price">Price</string>
+    <string name="change_24h">Change last 24h</string>
 </resources>

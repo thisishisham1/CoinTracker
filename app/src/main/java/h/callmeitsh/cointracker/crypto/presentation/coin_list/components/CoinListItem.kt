@@ -139,11 +139,11 @@ private fun CoinListItemPreview() {
 }
 
 internal val coinPreview = Coin(
-    id = "AERGO",
-    name = "Aergo",
+    id = "BTC",
+    name = "Bitcoin",
     rank = 1,
-    symbol = "AERGO",
+    symbol = "BTC",
     priceUsd = 50000.0,
-    changePercent24Hr = 0.6,
+    changePercent24Hr = -0.6,
     marketCapUsd = 12485965258.75
 ).toCoinUi()
